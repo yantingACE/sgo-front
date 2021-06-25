@@ -1,0 +1,18 @@
+{
+  "name": "unishop01",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitee.com/ly03171629/unishop_0111.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "vuex": "^3.6.2"
+  }
+}
