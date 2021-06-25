@@ -1,0 +1,65 @@
+.indexContainer {
+  heigh: 100%;
+}
+.indexContainer .header {
+  height: 80rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.indexContainer .header .logo {
+  width: 120rpx;
+  height: 40rpx;
+  margin: 0 20rpx;
+}
+.indexContainer .header .search {
+  height: 60rpx;
+  border: 1px solid #aaa;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.indexContainer .header .search .input .place {
+  font-size: 28rpx;
+  color: #f00;
+}
+.indexContainer .header .search .iconfont {
+  margin: 0 10rpx;
+}
+.indexContainer .header .btn {
+  width: 140rpx;
+  height: 60rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 60rpx;
+  padding: 0 10rpx;
+  margin: 0 10rpx;
+}
+.indexContainer .navScroll {
+  height: 80rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.indexContainer .navScroll .item {
+  width: 140rpx;
+  height: 80rpx;
+  text-align: center;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+.indexContainer .navScroll .item.active {
+  border-bottom: 1px solid #f00;
+}
+
