@@ -38,6 +38,10 @@
   text-align: center;
   line-height: 80rpx;
 }
+.categoryContainer .main .left .leftItem.active {
+  border-bottom: 1px solid #00f;
+  background-color: #ff69b4;
+}
 .categoryContainer .main .rightScroll {
   height: calc(100vh - 80rpx);
   -webkit-box-flex: 1;

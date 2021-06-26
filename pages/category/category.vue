@@ -5,28 +5,15 @@
 		</view>
 		<view class="main">
 			<view class="left">
-				<view class="leftItem">居家生活</view>
-				<view class="leftItem">居家生活</view>
+				<view @click="defaultIndex = index" class="leftItem" :class="{active:index === defaultIndex}" v-for="(category,index) in categoryList" :key="category.id">{{category.name}}</view>
 			</view>
 			<scroll-view enable-flex scroll-y="true" class="rightScroll">
 				<view class="scrollItem">
-					<image class="itemImg" src="../../static/images/mylove.jpg"></image>
+					<image class="itemImg" :src="currentCategory.imgUrl"></image>
 					<view class="goodsList">
-						<view class="goods">
-							<image class="goodsImg" src="../../static/images/mylove.jpg"></image>
-							<text class="goodsText">秋冬好物</text>
-						</view>
-						<view class="goods">
-							<image class="goodsImg" src="../../static/images/mylove.jpg"></image>
-							<text class="goodsText">秋冬好物</text>
-						</view>
-						<view class="goods">
-							<image class="goodsImg" src="../../static/images/mylove.jpg"></image>
-							<text class="goodsText">秋冬好物</text>
-						</view>
-						<view class="goods">
-							<image class="goodsImg" src="../../static/images/mylove.jpg"></image>
-							<text class="goodsText">秋冬好物</text>
+						<view class="goods" v-for="(goods,index) in goodsList" :key="goods.id">
+							<image class="goodsImg" :src="goods.wapBannerUrl"></image>
+							<text class="goodsText">{{goods.name}}</text>
 						</view>
 					</view>
 				</view>
@@ -36,11 +23,33 @@
 </template>
 
 <script>
+	import {mapState} from 'vuex'
 	export default {
 		data() {
 			return {
-				
+				defaultIndex:0
 			};
+		},
+		mounted(){
+			this.getCategoryList()
+		},
+		methods:{
+			getCategoryList(){
+				this.$store.dispatch('getCategoryList')
+			}
+		},
+		computed:{
+			...mapState({
+				categoryList:state =>state.category.categoryList
+			}),
+			
+			currentCategory(){
+				return this.categoryList[this.defaultIndex] || {}
+			},
+			
+			goodsList(){
+				return this.currentCategory.subCateList || []
+			}
 		}
 	}
 </script>
@@ -72,6 +81,9 @@
 					font-size 28rpx
 					text-align center
 					line-height 80rpx
+					&.active
+						border-bottom 1px solid blue
+						background-color hotpink
 			.rightScroll
 				height calc(100vh - 80rpx)
 				flex 1

@@ -146,6 +146,13 @@ var _vuex = __webpack_require__(/*! vuex */ 12);function ownKeys(object, enumera
   methods: {
     getIndexCateList: function getIndexCateList() {
       this.$store.dispatch('getIndexCateList');
+    },
+
+    // 点击商品跳转到商品详情页
+    toDetail: function toDetail(goods) {
+      wx.navigateTo({
+        url: '/pages/detail/detail?goods=' + JSON.stringify(goods) });
+
     } },
 
   computed: _objectSpread(_objectSpread({},

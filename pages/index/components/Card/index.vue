@@ -11,7 +11,7 @@
 		<view class="title">{{category.name}}</view>
 		<view class="title">{{category.frontName}}</view>
 		<view class="goodsList">
-			<view class="goods" v-for="(goods,index) in itemList" :key="goods.id">
+			<view class="goods" v-for="(goods,index) in itemList" :key="goods.id" @click="toDetail(goods)">
 				<image class="goodsImg" :src="goods.primaryPicUrl"></image>
 				<view class="goodsName">{{goods.name}}</view>
 				<view class="goodsPrice">{{goods.counterPrice}}</view>
@@ -30,6 +30,13 @@
 		methods:{
 			getIndexCateList(){
 				this.$store.dispatch('getIndexCateList')
+			},
+			
+			// 点击商品跳转到商品详情页
+			toDetail(goods){
+				wx.navigateTo({
+					url:'/pages/detail/detail?goods=' + JSON.stringify(goods)
+				})
 			}
 		},
 		computed:{
