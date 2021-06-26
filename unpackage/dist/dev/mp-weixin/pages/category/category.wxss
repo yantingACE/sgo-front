@@ -1,0 +1,73 @@
+.categoryContainer {
+  height: 100%;
+}
+.categoryContainer .header {
+  height: 80rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.categoryContainer .header .search {
+  width: 90%;
+  height: 60rpx;
+  background-color: #aaa;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 60rpx;
+}
+.categoryContainer .main {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  border-top: 1px solid #aaa;
+  box-sizing: border-box;
+}
+.categoryContainer .main .left {
+  width: 150rpx;
+}
+.categoryContainer .main .left .leftItem {
+  width: 150rpx;
+  height: 80rpx;
+  font-size: 28rpx;
+  text-align: center;
+  line-height: 80rpx;
+}
+.categoryContainer .main .rightScroll {
+  height: calc(100vh - 80rpx);
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  border-left: 1px solid #aaa;
+  box-sizing: border-box;
+}
+.categoryContainer .main .rightScroll .scrollItem .itemImg {
+  display: block;
+  width: 520rpx;
+  height: 190rpx;
+  margin: 20rpx auto;
+}
+.categoryContainer .main .rightScroll .scrollItem .goodsList {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+.categoryContainer .main .rightScroll .scrollItem .goodsList .goods {
+  width: 33.3333%;
+  text-align: center;
+}
+.categoryContainer .main .rightScroll .scrollItem .goodsList .goods .goodsImg {
+  width: 100%;
+  height: 144rpx;
+}
+.categoryContainer .main .rightScroll .scrollItem .goodsList .goods .goodsText {
+  font-size: 28rpx;
+}
+

@@ -11,16 +11,17 @@
 		</view>
 		<!-- nav -->
 		<scroll-view class="navScroll" scroll-x="true" enable-flex>
-			<view class="item" :class="{active:currentIndex === -1}" @click="changeNav(-1)">
+			<view class="item" :class="{active:currentId === -1}" @click="changeNav(-1)">
 				推荐
 			</view>
-			<view class="item" :class="{active:currentIndex === index}" @click="changeNav(index)" v-for="(nav,index) in navList" :key="nav.L1Id">
+			<view class="item" :class="{active:currentId === nav.L1Id}" @click="changeNav(nav.L1Id)" v-for="(nav,index) in navList" :key="nav.L1Id">
 				{{nav.text}}
 			</view>
 		</scroll-view>
 		<!-- 主要内容 -->
 		<scroll-view class="mainScroll" scroll-y="true" >
-			<view class="mainItem">
+			<!-- 点击推荐对应的内容 -->
+			<view class="mainItem" v-show="currentId === -1">
 				<!-- 轮播图 -->
 				<swiper class="mainSwiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
 					<swiper-item class="mainItem">
@@ -58,20 +59,27 @@
 				<!-- 楼层 -->
 				<Floor v-for="(floor,index) in floorList" :key="index" :floor="floor"></Floor>
 			</view>
+			
+			<!-- 点击nav分类对应的组件 -->
+			<Card v-show="currentId !== -1" :currentId="currentId"></Card>
 		</scroll-view>
 	</view>
 </template>
 
 <script>
 import Floor from './components/Floor/index.vue'
+import Card from './components/Card/index.vue'
 import {mapState,mapGetters} from 'vuex'
 export default {
 	components:{
-		Floor
+		Floor,
+		Card
 	},
 	data(){
 		return {
-			currentIndex:-1
+			// 之前我们用的是下标，currentIndex，用户点击nav的时候，我们保存的是当前点击的nav下标
+			// 现在我们改为保存用户点击的nav的L1Id,目的是为了用户点击的时候，把对应的id传递给card
+			currentId:-1
 		}
 	},
 	mounted(){
@@ -82,8 +90,8 @@ export default {
 			this.$store.dispatch('getHomeData')
 		},
 		// 点击切换nav
-		changeNav(index){
-			this.currentIndex = index
+		changeNav(navId){
+			this.currentId = navId
 		}
 	},
 	computed:{
