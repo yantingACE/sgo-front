@@ -79,7 +79,7 @@ const state = {
 		    "itemSizeTableFlag": false
 		},
 		{
-				isChecked:false,
+				isChecked:true,
 				count:6,
 		    "promId": 0,
 		    "showPoints": false,
@@ -160,6 +160,9 @@ const state = {
 const mutations = {
 	ADD_SHOPCART(state,shopcart){
 		state.shopCartList.push(shopcart)
+	},
+	DELETE_SHOPCART(state,index){
+		state.shopCartList.splice(index,1)
 	}
 }
 const actions = {

@@ -15,7 +15,7 @@
 				<!-- 购物车列表 -->
 		<view class="cartList">
 			<view class="cartItem" v-for="(cart,index) in shopCartList" :key="cart.id">
-				<text class='iconfont icon-xuanzhong' :class="{selected:cart.isChecked}"></text>
+				<text class='iconfont icon-xuanzhong' :class="{selected:cart.isChecked}" @click="changeIsCheck(cart)"></text>
 				<view class="shopItem">
 					<image class="shopImg" :src="cart.primaryPicUrl"></image>
 					<view class="shopInfo">
@@ -25,18 +25,18 @@
 				</view>
 				<!-- 控制数量 -->
 				<view class="countCtrl">
-					<text class="add"> + </text>
+					<text class="add" @click="changeNum(cart,1)"> + </text>
 					<text class="count">{{cart.count}}</text>
-					<text class="del"> - </text>
+					<text class="del" @click="changeNum(cart,-1,index)"> - </text>
 				</view>
 			</view>
 		</view>
 		<!-- 底部下单 -->
 		<view class="cartFooter">
-			<text class='iconfont icon-xuanzhong'></text>
-			<text class="allSelected">已选 0</text>
+			<text class='iconfont icon-xuanzhong' :class="isCheckAll && 'selected'" @click="changeIsCheckAll"></text>
+			<text class="allSelected">已选 {{checkedNum}}</text>
 			<view class="right">
-				<text class="totalPrice">合计: 0</text>
+				<text class="totalPrice">合计: {{allMoney}}</text>
 				<text class="preOrder">下单</text>
 			</view>
 		</view>
@@ -56,12 +56,65 @@
 			};
 		},
 		methods:{
-			
+			//修改商品数量
+			changeNum(cart,num,index){
+				if(num > 0){
+					// 用户点的是+
+					cart.count++
+				}else{
+					if(cart.count > 1){
+						cart.count --
+					}else{
+						wx.showModal({
+							title:`你确定要删除${cart.name}吗？`,
+							success:(res) => {
+								if(res.confirm){
+									//用户点击了确定按钮
+									this.$store.commit('DELETE_SHOPCART',index)
+								}
+							}
+						})
+					}
+				}
+			},
+			//修改单个选中状态
+			changeIsCheck(cart){
+				cart.isChecked = !cart.isChecked
+			},
+			//修改全选或者全不选
+			changeIsCheckAll(){
+				let currentFlag = !this.isCheckAll
+				this.shopCartList.forEach(item => {
+					if(item.isChecked === currentFlag) return
+					item.isChecked = currentFlag
+				})
+			}
 		},
 		computed:{
 			...mapState({
 				shopCartList:state => state.shopcart.shopCartList
-			})
+			}),
+			allMoney(){
+				return this.shopCartList.reduce((prev,item) => {
+					if(item.isChecked){
+						prev += item.counterPrice * item.count
+					}
+					return prev
+				},0)
+			},
+			
+			checkedNum(){
+				return this.shopCartList.reduce((prev,item) => {
+					if(item.isChecked){
+						prev += item.count
+					}
+					return prev
+				},0)
+			},
+			
+			isCheckAll(){
+				return this.shopCartList.every(item => item.isChecked) && this.shopCartList.length > 0
+			}
 		}
 	}
 </script>

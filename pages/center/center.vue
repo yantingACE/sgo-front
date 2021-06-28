@@ -101,6 +101,20 @@
 		},
 		mounted(){
 			this.userInfo = wx.getStorageSync('userInfo_key')
+			
+			
+			// 获取登录凭证
+			wx.login({
+				success:async (res) => {
+					// console.log(res)
+					//第一步：获取登录凭证code,这个code在客户端没什么用，需要发送给开发者服务器
+					const result = await request('/getOpenId?code=' + res.code)
+					console.log(result) //获取到token 
+					
+					//第四步，用户获取到token以后，把token一般都要存储，然后发请求的时候带上token
+					await request('/verifyToken?token=' + result)
+				}
+			})
 		},
 		methods: {
 			toLogin(){
