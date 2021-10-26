@@ -1,21 +1,22 @@
 {
   "pages": [
-    "pages/category/category",
     "pages/index/index",
+    "pages/room/room",
     "pages/center/center",
-    "pages/shopcart/shopcart",
+    "pages/track/track",
     "pages/login/login",
-    "pages/detail/detail"
+    "pages/atlas/atlas",
+    "pages/index/table/table"
   ],
   "subPackages": [],
   "window": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "首页",
-    "navigationBarBackgroundColor": "#BB2C08"
+    "navigationBarBackgroundColor": "#41a1c9"
   },
   "tabBar": {
     "color": "#555",
-    "selectedColor": "#D43C33",
+    "selectedColor": "#41a1c9",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -24,16 +25,16 @@
         "selectedIconPath": "/static/images/tabBar/tab-home-current.png"
       },
       {
-        "pagePath": "pages/category/category",
-        "text": "分类",
-        "iconPath": "/static/images/tabBar/tab-cate.png",
-        "selectedIconPath": "/static/images/tabBar/tab-cate-current.png"
+        "pagePath": "pages/track/track",
+        "text": "订单",
+        "iconPath": "/static/images/tabBar/tab-orderForm.png",
+        "selectedIconPath": "/static/images/tabBar/tab-orderForm-current.png"
       },
       {
-        "pagePath": "pages/shopcart/shopcart",
-        "text": "购物车",
-        "iconPath": "/static/images/tabBar/tab-cart.png",
-        "selectedIconPath": "/static/images/tabBar/tab-cart-current.png"
+        "pagePath": "pages/room/room",
+        "text": "球房",
+        "iconPath": "/static/images/tabBar/tab-orderForm.png",
+        "selectedIconPath": "/static/images/tabBar/tab-orderForm-current.png"
       },
       {
         "pagePath": "pages/center/center",
@@ -43,6 +44,10 @@
       }
     ]
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap85.json"
+  "permission": {
+    "scope.userLocation": {
+      "desc": "获取位置显示附近的店面"
+    }
+  },
+  "usingComponents": {}
 }

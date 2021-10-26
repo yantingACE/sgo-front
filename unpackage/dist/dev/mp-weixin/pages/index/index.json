@@ -1,7 +1,9 @@
 {
-  "navigationBarTitleText": "首页",
+  "navigationBarTitleText": "S-Go Room 我的球房",
+  "navigationStyle": "custom",
   "usingComponents": {
-    "floor": "/pages/index/components/Floor/index",
-    "card": "/pages/index/components/Card/index"
+    "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
+    "floor": "/pages/index/components/floor/index",
+    "head": "/pages/index/components/head/index"
   }
 }

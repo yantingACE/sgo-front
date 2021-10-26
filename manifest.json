@@ -43,17 +43,25 @@
             /* ios打包配置 */
             "ios" : {},
             /* SDK配置 */
-            "sdkConfigs" : {}
+            "sdkConfigs" : {
+                "maps" : {}
+            }
         }
     },
     /* 快应用特有相关 */
     "quickapp" : {},
     /* 小程序特有相关 */
     "mp-weixin" : {
-        "appid" : "wx96c71d20c0194b21",
+        "appid" : "wx0f8d43a8522a2c9b",
         "setting" : {
             "urlCheck" : false,
-            "es6" : true
+            "es6" : true,
+            "postcss" : true
+        },
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "获取位置显示附近的店面"
+            }
         },
         "usingComponents" : true
     },

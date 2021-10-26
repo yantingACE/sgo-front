@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "订单",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "floor": "/pages/index/components/floor/index",
+    "order": "/pages/index/components/order/index"
+  }
+}

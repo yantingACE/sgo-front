@@ -1,189 +1,295 @@
 <template>
-	<view class="indexContainer">
-		<!-- 头部 -->
-		<view class="header">
-			<image class="logo" src="../../static/images/logo.png" mode=""></image>
-			<view class="search">
-				<text class="iconfont icon-sousuo"></text>
-				<input class="input" type="text" placeholder="搜索商品" placeholder-class="place"/>
-			</view>
-			<button class="btn">北方汉子</button>
+	<view class="index">
+		<!-- <Head/> -->
+		<!-- 下拉框 -->
+		<!-- <view class="lowerLink">
+			<uni-combox  :candidates="candidates" placeholder="切换店铺" v-model="city"></uni-combox>
+		</view> -->
+		
+		<!-- 轮播图 -->
+		<swiper class="indexSwiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
+			<swiper-item>
+				<view class="swiper-item">
+					<image class="swiperImg" src="../../static/images/banner.jpg" mode=""></image>
+				</view>
+			</swiper-item>
+			<swiper-item>
+				<view class="swiper-item">
+					<image class="swiperImg" src="../../static/images/banner.jpg" mode=""></image>
+				</view>
+			</swiper-item>
+		</swiper>
+		<view class="scan">
+			<uni-icons class="scan-icon" type="contact"color="#fff"></uni-icons>
+			<text class="title">S-Go Room 我的球房</text>
 		</view>
-		<!-- nav -->
-		<scroll-view class="navScroll" scroll-x="true" enable-flex>
-			<view class="item" :class="{active:currentId === -1}" @click="changeNav(-1)">
-				推荐
-			</view>
-			<view class="item" :class="{active:currentId === nav.L1Id}" @click="changeNav(nav.L1Id)" v-for="(nav,index) in navList" :key="nav.L1Id">
-				{{nav.text}}
-			</view>
-		</scroll-view>
-		<!-- 主要内容 -->
-		<scroll-view class="mainScroll" scroll-y="true" >
-			<!-- 点击推荐对应的内容 -->
-			<view class="mainItem" v-show="currentId === -1">
-				<!-- 轮播图 -->
-				<swiper class="mainSwiper" :indicator-dots="true" :autoplay="true" :interval="3000" :duration="1000">
-					<swiper-item class="mainItem">
-						<view class="swiper-item">
-							<image class="mainImg" src="https://yanxuan.nosdn.127.net/3863da38d02fe0879fd2fad5a4c82359.jpg?type=webp&imageView&quality=75&thumbnail=750x0" mode=""></image>
-						</view>
-					</swiper-item>
-					<swiper-item class="mainItem">
-						<view class="swiper-item">
-							<image class="mainImg" src="https://yanxuan.nosdn.127.net/31307c24c668ca2ecfecc6a7c1e5caa5.jpg?type=webp&imageView&quality=75&thumbnail=750x0" mode=""></image>
-						</view>
-					</swiper-item>
-					<swiper-item class="mainItem">
-						<view class="swiper-item">
-							<image class="mainImg" src="https://yanxuan.nosdn.127.net/07a280b9a1dcb64a7bcf9a969bc996d1.jpg?type=webp&imageView&quality=75&thumbnail=750x0" mode=""></image>
-						</view>
-					</swiper-item>
-				</swiper>
-				<!-- 图标列表 -->
-				<view class="iconList">
-					<view class="iconItem" v-for="(icon,index) in iconList" :key="icon.desc">
-						<image class="iconImg" :src="icon.icon"></image>
-						<text class="iconText">{{icon.desc}}</text>
-					</view>
-				</view>
-				
-				<!-- 10个分类列表 -->
-				<view class="categoryList">
-					<view class="category" v-for="(category,index) in navList" :key="category.L1Id">
-						<image class="catImg" :src="category.picUrl" mode=""></image>
-						<text class="catText">{{category.text}}</text>
-					</view>
-				</view>
-				
-				<!-- 楼层 -->
-				<Floor v-for="(floor,index) in floorList" :key="index" :floor="floor"></Floor>
-			</view>
+			<!-- button按钮 -->
+		<view class="btn">
+			<!-- <button class="btnbegin" type="default"
+			 style="">打&nbsp&nbsp球</button> -->
+			<image class="btnbegin" src="../../static/images/play-button.png" @click="toTable"></image>
+		</view>
+		<view class="body">
 			
-			<!-- 点击nav分类对应的组件 -->
-			<Card v-show="currentId !== -1" :currentId="currentId"></Card>
-		</scroll-view>
+			<view class="bodyimg">
+				<view class="bodyimgleft">
+					<image class="left" src="../../static/images/newPreferential.png" mode=""></image>
+				</view>
+				<view class="bodyimgright">
+					<image class="right" src="../../static/images/Top-upPreferential.png" mode=""></image>
+					<image class="right" src="../../static/images/inviteGift.png" mode=""></image>
+				</view>
+			</view>
+			<view class="bodyimgbottom">
+				<image class="bootm" src="../../static/images/newPreferential.png" mode=""></image>
+				<image class="bootm" src="../../static/images/newPreferential.png" mode=""></image>
+				<image class="bootm" src="../../static/images/newPreferential.png" mode=""></image>
+			</view>
+			<view class="bodyimgstart">
+				<image class="start" src="../../static/images/inviteGift.png" mode=""></image>
+				<image class="start" src="../../static/images/inviteGift.png" mode=""></image>
+			</view>
+		</view>
+		<!-- 优惠卷 -->
+		<view class="foot">
+			<text> 新人专享优惠 ----------------</text>
+		</view>
+		<view class="bodyimgstart">
+			<image class="start" src="../../static/images/inviteGift.png" mode=""></image>
+			<image class="start" src="../../static/images/inviteGift.png" mode=""></image>
+		</view>
+		<!-- 店铺 -->
+		<view class="foot">
+			<text>---------------- 优惠门店 ----------------</text>
+		</view>
+		<view class="order">
+			<view class="shopName">
+				<view class="left">
+					<uni-icons class="scan-icon" type="contact" color="#41A1C9"></uni-icons>
+					<text class="title">北京朝阳区国贸建外soho店</text>
+				</view>
+				<button class="btn" type="default" style="height: 60rpx;background-color:##58acd1">去看看</button>
+			</view>
+			<view class="condition">
+				<view class="source">
+					<text class="title">充值3000元,送3000元</text>
+					<text class="title">234元</text>
+				</view>
+				<view class="source">
+					<text class="title">账户余额</text>
+					<text class="title">6545元</text>
+				</view>
+				<view class="time">
+					<view class="timeTitle">
+						<text class="title">活动时间:</text>
+						<text class="title">2021.9.1-</text>
+						<text class="title">2021.10.28</text>
+					</view>
+					<view class="explain">
+						<text class="title">使用说明</text>
+						<uni-icons class="scan-icon" type="contact" color="#41A1C9"></uni-icons>
+					</view>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
 <script>
-import Floor from './components/Floor/index.vue'
-import Card from './components/Card/index.vue'
-import {mapState,mapGetters} from 'vuex'
-export default {
-	components:{
-		Floor,
-		Card
-	},
-	data(){
-		return {
-			// 之前我们用的是下标，currentIndex，用户点击nav的时候，我们保存的是当前点击的nav下标
-			// 现在我们改为保存用户点击的nav的L1Id,目的是为了用户点击的时候，把对应的id传递给card
-			currentId:-1
-		}
-	},
-	mounted(){
-		this.getHomeData()
-	},
-	methods:{
-		getHomeData(){
-			this.$store.dispatch('getHomeData')
+	import Floor from './components/floor/index.vue'
+	import Head from './components/head/index.vue'
+	export default {
+		data() {
+			return {
+				title: 'Hello'
+			}
 		},
-		// 点击切换nav
-		changeNav(navId){
-			this.currentId = navId
+		
+
+		onLoad() {
+
+		},
+		methods: {
+			toTable(){
+				wx.navigateTo({
+					url:'/pages/index/table/table'
+				})
+			}
+		},
+		components:{
+			Floor,
+			Head
 		}
-	},
-	computed:{
-		...mapState({
-			homeData:state => state.home.homeData
-		}),
-		...mapGetters(['navList','iconList','floorList'])
 	}
-	
-	
-};
 </script>
 
-<style lang="stylus">
-	.indexContainer 
-		heigh 100% 
-		.header
-			height 80rpx
-			display flex
-			align-items center
-			.logo
-				width 120rpx
-				height 40rpx
-				margin 0 20rpx
-			.search
-				height 60rpx
-				border 1px solid #aaa
-				box-sizing border-box
-				flex 1
+<style lang="stylus" scoped>
+	.index
+		background-color #000000
+		// 标题
+		.scan
+			height 60rpx
+			width 400rpx
+			color #FFFFFF
+			background-color none
+			// border 1px solid red
+			margin -400rpx 0 0 32rpx
+			position absolute
+			font-size 36rpx
+			.title
+				margin-left 10rpx
+		.lowerLink
+			width 200rpx
+			//轮播图
+		.indexSwiper
+			height 500rpx
+			position relative
+			.swiperImg
+				width 100%
+		.btn
+			margin-top -100rpx
+			height 100rpx
+			margin-left 36rpx
+			.btnbegin
+				position absolute
+				height: 100rpx
+				width 686rpx
+				line-height 110rpx
+				margin 30rpx 0
+			//身体
+		.body
+			margin-top 70rpx
+			.bodyimg
 				display flex
-				align-items center
-				.input
-					.place
-						font-size 28rpx
-						color red
-				.iconfont
-					margin 0 10rpx
-			.btn
-				width 140rpx
-				height 60rpx
-				font-size 28rpx
-				text-align center
+				// margin-top 40rpx
+				.bodyimgleft
+					.left
+						width 336rpx
+						height 328rpx
+						margin 0 18rpx 0 32rpx
+						border-radius 5%
+				.bodyimgright
+					.right
+						width 332rpx
+						height 156rpx
+						// margin-right 32rpx
+						border-radius 5%
+					.right:first-child
+						margin-bottom 12rpx
+			.bodyimgbottom
+				margin-left 36rpx
+				.bootm
+					width 200rpx
+					height 200rpx
+					margin-right 36rpx
+			.bodyimgstart
+				margin-left 36rpx
+				.start
+					width 320rpx
+					height 130rpx
+				.start:first-child
+					margin-right 26rpx
+			// .send
+			// 	color #fff
+			// 	font-size 36rpx
+			// 	margin 36rpx 0
+			// 	margin-left 36rpx
+				// width 224rpx
+				// border-bottom solid 10rpx #44a1ca
+			//nav
+		// .navScroll 	
+		// 	display inline-flex
+		// 	height 80rpx
+		// 	.item
+		// 		flex 1
+		// 		text-align center
+		// 		line-height 80rpx
+		// 		border 1rpx #007AFF
+		.foot
+			color #fff
+			font-size 34rpx
+			// margin-top 36rpx
+			margin-left 38rpx
+			text-align center
+			// .footBottom
+			// 	width 146rpx
+			// 	height 10rpx
+			// 	background-color #62c0e5
+			// 	border-radius 10rpx
+			// 	display flex
+			// 	margin-top -10rpx
+		.bodyimgstart
+			margin-left 36rpx
+			.start
+				width 320rpx
+				height 130rpx
+			.start:first-child
+				margin-right 26rpx
+		.order
+			background-color #fff
+			// margin-top 10rpx
+			margin-left 28rpx
+			margin-right 28rpx
+			border-radius 15rpx
+			.shopName
+				display flex
+				// height 60rpx
 				line-height 60rpx
-				padding 0 10rpx
-				margin 0 10rpx
-		.navScroll
-			height 80rpx
-			display flex
-			.item
-				flex-shrink 0
-				width 140rpx
-				height 80rpx
-				text-align center
-				line-height 80rpx
-				font-size 28rpx
-				box-sizing border-box
-				&.active
-					border-bottom 1px solid red
-		.mainScroll
-			height calc(100vh - 160rpx)
-			.mainItem
-				.mainImg
-					width 100%
-					height 350rpx
-				.iconList
-					margin-top 10rpx
-					height 32rpx
+				// border-bottom 1px solid #c0c0c0
+				background: linear-gradient(Top,#469bc1, #f6fafc)
+				padding-left 20rpx
+				padding-right 20rpx
+				border-radius 15rpx
+				.left
+					font-weight bold
+					text-overflow ellipsis
+					white-space nowrap
+					overflow hidden
+					width 550rpx
+					font-size 32rpx
+					.scan-icon
+						color #2eb1e9
+						margin-right 10rpx
+				.btn
+					border-radius 45rpx
+					line-height 60rpx
+					background-color #58acd1
+					color #fff
+					font-size 28rpx
+					margin-right 2rpx
+					width 160rpx
+					margin-top 2rpx
+			.condition
+				padding-left 20rpx
+				padding-right 20rpx
+				.source
+					display: flex;
+					justify-content: space-between;
+					.title 
+						width: 50%;
+						// width: calc(50% - 20px);
+						height: 30px;
+						line-height: 30px;
+						color #6f6f6f
+					.title:last-child
+						text-align: right;
+				.time
 					display flex
-					justify-content space-around
-					.iconItem
-						height 32rpx
-						display flex
-						align-items center
-						.iconImg
-							width 32rpx
-							height 32rpx
-						.iconText
-							font-size 24rpx
-				.categoryList
-					display flex
-					flex-wrap wrap
-					.category
-						width 20%
-						display flex
-						flex-direction column
-						align-items center
-						.catImg
-							width 110rpx
-							height 110rpx
-							border-radius 30rpx
-							margin 20rpx 0
-						.catText
-							font-size 28rpx
-			
+					.timeTitle
+						.title
+							color #a4a4a4
+						.title:first-child
+							// margin-right 20rpx
+					.explain
+						width 250rpx
+						flex: 1
+						margin-left 40rpx
+						color #44A1CA
+						
+						
+						
+					
+					
+				
+				
 </style>

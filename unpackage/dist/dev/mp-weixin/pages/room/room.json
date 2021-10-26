@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "球房",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "floor": "/pages/index/components/floor/index"
+  }
+}

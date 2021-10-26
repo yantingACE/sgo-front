@@ -1,39 +1,36 @@
 {
 	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
 		{
-				"path" : "pages/category/category",
-				"style" :                                                                                    
-				{
-						"navigationBarTitleText": "分类",
-						"enablePullDownRefresh": false
-				}
-				
-		},
-		{
 			"path": "pages/index/index",
 			"style": {
-				"navigationBarTitleText": "首页"
+				"navigationBarTitleText": "S-Go Room 我的球房",
+				"navigationStyle":"custom"
 			}
-		},
-		{
+		},{
+		    "path" : "pages/room/room",
+		    "style" :                                                                                    
+		    {
+		        "navigationBarTitleText": "球房",
+		        "enablePullDownRefresh": false
+		    }
+		},{
 				"path" : "pages/center/center",
 				"style" :                                                                                    
 				{
 						"navigationBarTitleText": "个人中心",
-						"enablePullDownRefresh": false
+						"navigationStyle":"custom"
+				}
+				
+		},{
+				"path" : "pages/track/track",
+				"style" :                                                                                    
+				{
+						"navigationBarTitleText": "订单",
+						"enablePullDownRefresh": true
 				}
 				
 		},
 		{
-				"path" : "pages/shopcart/shopcart",
-				"style" :                                                                                    
-				{
-						"navigationBarTitleText": "购物车",
-						"enablePullDownRefresh": false
-				}
-				
-		}
-      ,{
             "path" : "pages/login/login",
             "style" :                                                                                    
             {
@@ -42,8 +39,9 @@
             }
             
         }
+       
         ,{
-            "path" : "pages/detail/detail",
+            "path" : "pages/atlas/atlas",
             "style" :                                                                                    
             {
                 "navigationBarTitleText": "",
@@ -51,15 +49,26 @@
             }
             
         }
+        ,{
+            "path" : "pages/index/table/table",
+            "style" :                                                                                    
+            {
+                "navigationBarTitleText": "球房大厅",
+                "enablePullDownRefresh": false
+            }
+            
+        }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "white",
 		"navigationBarTitleText": "首页",
-		"navigationBarBackgroundColor": "#BB2C08"
+		"navigationBarBackgroundColor": "#41a1c9"
+		
 	},
 	"tabBar": {
 	    "color": "#555",
-	    "selectedColor": "#D43C33",
+	    "selectedColor": "#41a1c9",
 	    "list": [
 	      {
 	        "pagePath": "pages/index/index",
@@ -68,16 +77,15 @@
 	        "selectedIconPath": "/static/images/tabBar/tab-home-current.png"
 	      },
 	      {
-	        "pagePath": "pages/category/category",
-	        "text": "分类",
-	        "iconPath": "/static/images/tabBar/tab-cate.png",
-	        "selectedIconPath": "/static/images/tabBar/tab-cate-current.png"
-	      },
-	      {
-	        "pagePath": "pages/shopcart/shopcart",
-	        "text": "购物车",
-	        "iconPath": "/static/images/tabBar/tab-cart.png",
-	        "selectedIconPath": "/static/images/tabBar/tab-cart-current.png"
+	        "pagePath": "pages/track/track",
+	        "text": "订单",
+	        "iconPath": "/static/images/tabBar/tab-orderForm.png",
+	        "selectedIconPath": "/static/images/tabBar/tab-orderForm-current.png"
+	      },{
+	        "pagePath": "pages/room/room",
+	        "text": "球房",
+	        "iconPath": "/static/images/tabBar/tab-orderForm.png",
+	        "selectedIconPath": "/static/images/tabBar/tab-orderForm-current.png"
 	      },
 	      {
 	        "pagePath": "pages/center/center",

@@ -1,6 +1,7 @@
 <template>
 	<view class="loginContainer">
-		<image class="logo" src="http://yanxuan.nosdn.127.net/39c5e4583753d4c3cb868a64c2c109ea.png" mode=""></image>
+		<!-- <image class="logo" src="http://yanxuan.nosdn.127.net/39c5e4583753d4c3cb868a64c2c109ea.png" mode=""></image> -->
+		<image class="logo" src="../../static/images/mylove.jpg" mode=""></image>
 		<p class="text">网易自营，精品生活家居品牌</p>
 		<div class="loginMethods">
 			<button class="login wechatLogin" @click="getUserInfo">微信登录</button>
